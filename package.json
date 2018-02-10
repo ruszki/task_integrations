@@ -1,0 +1,31 @@
+{
+    "name": "task-integrations",
+    "version": "0.0.1",
+    "description": "Integrate Asana with other tools",
+    "main": "src/index.ts",
+    "repository": "https://github.com/ruszki/task_integrations.git",
+    "author": "Gergo, Vladiszavlyev <me@ruszki.com>",
+    "license": "MIT",
+    "dependencies": {
+        "@types/chai": "^4.1.1",
+        "@types/mocha": "^2.2.46",
+        "@types/request": "^2.47.0",
+        "@types/request-promise-native": "^1.0.13",
+        "chai": "^4.1.2",
+        "cross-env": "^5.1.3",
+        "inversify": "^4.9.0",
+        "mocha": "^5.0.0",
+        "reflect-metadata": "^0.1.12",
+        "request": "^2.83.0",
+        "request-promise-native": "^1.0.5",
+        "ts-node": "^4.1.0",
+        "tslint": "^5.9.1",
+        "typemoq": "^2.1.0",
+        "typescript": "^2.7.0"
+    },
+    "scripts": {
+        "start": "cross-env NODE_ENV=development ts-node --max_old_space_size=4096 --inspect src/index.ts",
+        "start:prod": "cross-env NODE_ENV=production ts-node src/index.ts",
+        "test": "mocha --require ts-node/register --watch-extensions ts,tsx src/**/*.spec.{ts,tsx}"
+    }
+}
