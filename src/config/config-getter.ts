@@ -1,4 +1,4 @@
-import Config from "./config";
+import Config from "./model/config";
 import {readFileAsync} from "../helpers/promisify";
 
 let config: Config | null = null;
@@ -9,7 +9,7 @@ export default async function getConfig(): Promise<Config> {
             const configContent = await readFileAsync("config.json", "utf8");
             config = JSON.parse(configContent);
         } catch (_) {
-            return Promise.reject("Config file is not found!");
+            throw "Config file not found!";
         }
 
         if (config !== null) {
@@ -18,8 +18,8 @@ export default async function getConfig(): Promise<Config> {
     }
 
     if (config !== null) {
-        return Promise.resolve(config);
+        return config;
     } else {
-        return Promise.reject("Config file is not found!");
+        throw "Config file not found!";
     }
 }

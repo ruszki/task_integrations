@@ -1,7 +1,7 @@
 import request from "../request";
 import {expect} from "chai";
 import * as TypeMoq from "typemoq";
-import Config from "../../config/config";
+import Config from "../../config/model/config";
 import rp from "request-promise-native";
 import getConfig from "../../config/config-getter";
 

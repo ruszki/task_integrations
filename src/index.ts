@@ -1,14 +1,31 @@
-import {Options} from "request";
-import asanaRequest from "./asana/request";
+import getTaskActions, {TaskAction} from "./asana/tasks";
+import getConfig from "./config/config-getter";
+import Config from "./config/model/config";
+import AsanaFilterConfig from "./asana/filter-config";
+
+let asanaBitbucketConfig: AsanaFilterConfig = {
+    baseCacheTime: 60
+};
 
 async function main() {
-    const options: Options = {
-        uri: "https://app.asana.com/api/1.0/users/me"
+    const config: Config = await getConfig();
+
+    asanaBitbucketConfig = {
+        ...asanaBitbucketConfig,
+        workspaces: config.asana.workspaces,
+        teams: config.asana.teams,
+        projects: config.asana.projects
     };
 
-    const response: any = await asanaRequest(options);
+    mainLoop();
 
-    console.log("response", response);
+    setInterval(mainLoop, 30000);
+}
+
+async function mainLoop() {
+    const taskActions: Array<TaskAction> = await getTaskActions(asanaBitbucketConfig);
+
+    console.log(taskActions);
 }
 
 main();
