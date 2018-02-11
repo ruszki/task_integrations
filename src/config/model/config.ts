@@ -1,6 +1,4 @@
-interface Asana {
-    token: string;
-}
+import Asana from "./asana";
 
 interface Config {
     asana: Asana;
