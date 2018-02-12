@@ -1,10 +1,9 @@
-import {WorkspaceDescriptor, TeamDescriptor, ProjectDescriptor} from "../config/model/asana";
+import {AsanaFilter} from "../config/model/asana";
 
-interface AsanaFilterConfig {
+type AsanaFilterConfig = AsanaConfig & AsanaFilter;
+
+interface AsanaConfig {
     baseCacheTime: number;
-    workspaces?: Array<WorkspaceDescriptor> | WorkspaceDescriptor;
-    teams?: Array<TeamDescriptor> | TeamDescriptor;
-    projects?: Array<ProjectDescriptor> | ProjectDescriptor;
 }
 
 export default AsanaFilterConfig;
